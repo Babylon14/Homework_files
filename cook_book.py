@@ -39,7 +39,9 @@ def get_shop_list_by_dishes(dishes, person_count):
                     shop_dict[name]["quantity"] += quantity
                 else:
                     shop_dict[name] = {"measure": measure, "quantity": quantity}
-    print(shop_dict)
+
+    for key, values in shop_dict.items():
+        print(key, values)
 
 
 get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
