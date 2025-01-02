@@ -24,7 +24,22 @@ with open(file_path, "r", encoding="utf-8") as file:
 
         cook_book[headers] = ingredient_list
 
-for key, values in cook_book.items():
-    print(f"{key}:")
-    for val in values:
-        print(f"{val}")
+
+def get_shop_list_by_dishes(dishes, person_count):
+    shop_dict = {}
+
+    for dish in dishes:
+        if dish in cook_book:
+            for ingredient in cook_book[dish]:
+                name = ingredient["ingredient_name"]
+                quantity = int(ingredient["quantity"]) * person_count
+                measure = ingredient["measure"]
+
+                if name in shop_dict:
+                    shop_dict[name]["quantity"] += quantity
+                else:
+                    shop_dict[name] = {"measure": measure, "quantity": quantity}
+    print(shop_dict)
+
+
+get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2)
